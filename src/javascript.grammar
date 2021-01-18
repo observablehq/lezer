@@ -25,10 +25,13 @@
   statement @cut
 }
 
-@top Script { statement+ }
+@top Cell {
+  ImportDeclaration |
+  Block |
+  ExpressionStatement
+}
 
 statement[@isGroup=Statement] {
-  ImportDeclaration |
   ForStatement { kw<"for"> ckw<"await">? (ForSpec | ForInSpec | ForOfSpec) statement } |
   WhileStatement { kw<"while"> ParenthesizedExpression statement } |
   WithStatement { kw<"with"> ParenthesizedExpression statement } |
@@ -44,13 +47,16 @@ statement[@isGroup=Statement] {
   Block |
   LabeledStatement { Label ":" statement } |
   declaration |
-  ExpressionStatement { expression semi } |
+  ExpressionStatement |
   ";"
 }
 
+ExpressionStatement {
+  expression semi
+}
+
 ImportDeclaration {
-  kw<"import"> (Star ckw<"as"> VariableDefinition | commaSep<VariableDefinition | ImportGroup>) ckw<"from"> String semi |
-  kw<"import"> String semi
+  kw<"import"> (Star ckw<"as"> VariableDefinition | commaSep<VariableDefinition | ImportGroup>) ckw<"from"> String semi
 }
 
 ImportGroup {

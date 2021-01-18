@@ -1,145 +1,163 @@
 # Variable declaration
 
-var a = b
-  , c = d;
-const [x] = y = 3;
+{
+  var a = b
+    , c = d;
+  const [x] = y = 3;
+}
 
 ==>
 
-Script(
+Cell(Block(
   VariableDeclaration(var,VariableDefinition,Equals,VariableName,VariableDefinition,Equals,VariableName),
-  VariableDeclaration(const,ArrayPattern(VariableDefinition),Equals,AssignmentExpression(VariableName,Equals,Number)))
+  VariableDeclaration(const,ArrayPattern(VariableDefinition),Equals,AssignmentExpression(VariableName,Equals,Number))))
 
 # Function declaration
 
-function a(a, b) { return 3; }
-function b({b}, c = d, e = f) {}
+{
+  function a(a, b) { return 3; }
+  function b({b}, c = d, e = f) {}
+}
 
 ==>
 
-Script(
+Cell(Block(
   FunctionDeclaration(function,VariableDefinition,ParamList(VariableDefinition,VariableDefinition),Block(ReturnStatement(return,Number))),
   FunctionDeclaration(function,VariableDefinition,ParamList(
-    ObjectPattern(PatternProperty(PropertyName)),VariableDefinition,Equals,VariableName,VariableDefinition,Equals,VariableName),Block))
+    ObjectPattern(PatternProperty(PropertyName)),VariableDefinition,Equals,VariableName,VariableDefinition,Equals,VariableName),Block)))
 
 # Async functions
 
-async function foo() {}
+{
+  async function foo() {}
 
-class Foo { async bar() {} }
+  class Foo { async bar() {} }
 
-async (a) => { return foo; };
+  async (a) => { return foo; };
+}
 
 ==>
 
-Script(
+Cell(Block(
   FunctionDeclaration(async,function,VariableDefinition,ParamList,Block),
   ClassDeclaration(class,VariableDefinition,ClassBody(MethodDeclaration(async,PropertyNameDefinition,ParamList,Block))),
-  ExpressionStatement(ArrowFunction(async,ParamList(VariableDefinition),Arrow,Block(ReturnStatement(return,VariableName)))))
+  ExpressionStatement(ArrowFunction(async,ParamList(VariableDefinition),Arrow,Block(ReturnStatement(return,VariableName))))))
 
 # If statements
 
-if (x) log(y);
+{
+  if (x) log(y);
 
-if (a.b) {
-  d;
+  if (a.b) {
+    d;
+  }
+
+  if (a) {
+    c;
+    d;
+  } else {
+    e;
+  }
+
+  if (1) if (2) b; else c;
 }
-
-if (a) {
-  c;
-  d;
-} else {
-  e;
-}
-
-if (1) if (2) b; else c;
 
 ==>
 
-Script(
+Cell(Block(
   IfStatement(if,ParenthesizedExpression(VariableName),ExpressionStatement(CallExpression(VariableName,ArgList(VariableName)))),
   IfStatement(if,ParenthesizedExpression(MemberExpression(VariableName,PropertyName)),Block(ExpressionStatement(VariableName))),
   IfStatement(if,ParenthesizedExpression(VariableName),Block(ExpressionStatement(VariableName),ExpressionStatement(VariableName)),
     else,Block(ExpressionStatement(VariableName))),
   IfStatement(if,ParenthesizedExpression(Number),IfStatement(if,ParenthesizedExpression(Number),ExpressionStatement(VariableName),
-    else,ExpressionStatement(VariableName))))
+    else,ExpressionStatement(VariableName)))))
 
 # While loop
 
-while (1) debugger;
-while (2) {
-  a;
-  b;
+{
+  while (1) debugger;
+  while (2) {
+    a;
+    b;
+  }
 }
 
 ==>
 
-Script(
+Cell(Block(
   WhileStatement(while,ParenthesizedExpression(Number),DebuggerStatement(debugger)),
-  WhileStatement(while,ParenthesizedExpression(Number),Block(ExpressionStatement(VariableName),ExpressionStatement(VariableName))))
+  WhileStatement(while,ParenthesizedExpression(Number),Block(ExpressionStatement(VariableName),ExpressionStatement(VariableName)))))
 
 # Labels
 
-foo: 1;
-foo: while(2) break foo;
-
-==>
-
-Script(
-  LabeledStatement(Label,ExpressionStatement(Number)),
-  LabeledStatement(Label,WhileStatement(while,ParenthesizedExpression(Number),BreakStatement(break,Label))))
-
-# Try
-
-try { throw new Error; } catch {}
-try { 1; } catch (x) { 2; } finally { 3; }
-
-==>
-
-Script(
-  TryStatement(try,Block(ThrowStatement(throw,NewExpression(new,VariableName))),catch,Block),
-  TryStatement(try,Block(ExpressionStatement(Number)),
-    catch,VariableDefinition,Block(ExpressionStatement(Number)),
-    finally,Block(ExpressionStatement(Number))))
-
-# Switch
-
-switch (x) {
-  case 1:
-    return true;
-  case 2:
-  case 50 * 3:
-    console.log("ok");
-  default:
-    return false;
+{
+  foo: 1;
+  foo: while(2) break foo;
 }
 
 ==>
 
-Script(SwitchStatement(switch,ParenthesizedExpression(VariableName),SwitchBody(
+Cell(Block(
+  LabeledStatement(Label,ExpressionStatement(Number)),
+  LabeledStatement(Label,WhileStatement(while,ParenthesizedExpression(Number),BreakStatement(break,Label)))))
+
+# Try
+
+{
+  try { throw new Error; } catch {}
+  try { 1; } catch (x) { 2; } finally { 3; }
+}
+
+==>
+
+Cell(Block(
+  TryStatement(try,Block(ThrowStatement(throw,NewExpression(new,VariableName))),catch,Block),
+  TryStatement(try,Block(ExpressionStatement(Number)),
+    catch,VariableDefinition,Block(ExpressionStatement(Number)),
+    finally,Block(ExpressionStatement(Number)))))
+
+# Switch
+
+{
+  switch (x) {
+    case 1:
+      return true;
+    case 2:
+    case 50 * 3:
+      console.log("ok");
+    default:
+      return false;
+  }
+}
+
+==>
+
+Cell(Block(SwitchStatement(switch,ParenthesizedExpression(VariableName),SwitchBody(
   CaseLabel(case,Number),
   ReturnStatement(return,BooleanLiteral),
   CaseLabel(case,Number),
   CaseLabel(case,BinaryExpression(Number,ArithOp,Number)),
   ExpressionStatement(CallExpression(MemberExpression(VariableName,PropertyName),ArgList(String))),
   DefaultLabel(default),
-  ReturnStatement(return,BooleanLiteral))))
+  ReturnStatement(return,BooleanLiteral)))))
 
 # For
 
-for (let x = 1; x < 10; x++) {}
-for (const y of z) {}
-for (var m in n) {}
-for (q in r) {}
-for (var a, b; c; d) continue;
-for (i = 0, init(); i < 10; i++) {}
-for (;;) {}
-for (const {thing} in things) thing;
-for await (let x of stream) {}
+{
+  for (let x = 1; x < 10; x++) {}
+  for (const y of z) {}
+  for (var m in n) {}
+  for (q in r) {}
+  for (var a, b; c; d) continue;
+  for (i = 0, init(); i < 10; i++) {}
+  for (;;) {}
+  for (const {thing} in things) thing;
+  for await (let x of stream) {}
+}
 
 ==>
 
-Script(
+Cell(Block(
   ForStatement(for,ForSpec(VariableDeclaration(let,VariableDefinition,Equals,Number),
     BinaryExpression(VariableName,CompareOp,Number),PostfixExpression(VariableName,ArithOp)),Block),
   ForStatement(for,ForOfSpec(const,VariableDefinition,of,VariableName),Block),
@@ -150,94 +168,123 @@ Script(
     CallExpression(VariableName,ArgList)),BinaryExpression(VariableName,CompareOp,Number),PostfixExpression(VariableName,ArithOp)),Block),
   ForStatement(for,ForSpec,Block),
   ForStatement(for,ForInSpec(const,ObjectPattern(PatternProperty(PropertyName)),in,VariableName),ExpressionStatement(VariableName)),
-  ForStatement(for,await,ForOfSpec(let,VariableDefinition,of,VariableName),Block))
+  ForStatement(for,await,ForOfSpec(let,VariableDefinition,of,VariableName),Block)))
 
 # Labeled statements
 
-theLoop: for (;;) {
-  if (a) {
-    break theLoop;
+{
+  theLoop: for (;;) {
+    if (a) {
+      break theLoop;
+    }
   }
 }
 
 ==>
 
-Script(LabeledStatement(Label,ForStatement(for,ForSpec,Block(
-  IfStatement(if,ParenthesizedExpression(VariableName),Block(BreakStatement(break,Label)))))))
+Cell(Block(LabeledStatement(Label,ForStatement(for,ForSpec,Block(
+  IfStatement(if,ParenthesizedExpression(VariableName),Block(BreakStatement(break,Label))))))))
 
 # Classes
 
-class Foo {
-  static one(a) { return a; };
-  two(b) { return b; }
-  finally() {}
-}
+{
+  class Foo {
+    static one(a) { return a; };
+    two(b) { return b; }
+    finally() {}
+  }
 
-class Foo extends require('another-class') {
-  constructor() { super(); }
-  bar() { super.a(); }
+  class Foo extends require('another-class') {
+    constructor() { super(); }
+    bar() { super.a(); }
+  }
 }
 
 ==>
 
-Script(
+Cell(Block(
   ClassDeclaration(class,VariableDefinition,ClassBody(
     MethodDeclaration(static,PropertyNameDefinition,ParamList(VariableDefinition),Block(ReturnStatement(return,VariableName))),
     MethodDeclaration(PropertyNameDefinition,ParamList(VariableDefinition),Block(ReturnStatement(return,VariableName))),
     MethodDeclaration(PropertyNameDefinition,ParamList,Block))),
   ClassDeclaration(class,VariableDefinition,extends,CallExpression(VariableName,ArgList(String)),ClassBody(
     MethodDeclaration(PropertyNameDefinition,ParamList,Block(ExpressionStatement(CallExpression(super,ArgList)))),
-    MethodDeclaration(PropertyNameDefinition,ParamList,Block(ExpressionStatement(CallExpression(MemberExpression(super,PropertyName),ArgList)))))))
+    MethodDeclaration(PropertyNameDefinition,ParamList,Block(ExpressionStatement(CallExpression(MemberExpression(super,PropertyName),ArgList))))))))
 
-# Imports
+# Import default
 
 import defaultMember from "module-name";
-import * as name from "module-name";
-import { member } from "module-name";
-import { member1, member2 as alias2 } from "module-name";
-import defaultMember, { member1, member2 as alias2, } from "module-name";
-import "module-name";
 
 ==>
 
-Script(
-  ImportDeclaration(import,VariableDefinition,from,String),
-  ImportDeclaration(import,Star,as,VariableDefinition,from,String),
-  ImportDeclaration(import,ImportGroup(VariableDefinition),from,String),
-  ImportDeclaration(import,ImportGroup(VariableDefinition,VariableName,as,VariableDefinition),from,String),
-  ImportDeclaration(import,VariableDefinition,ImportGroup(VariableDefinition,VariableName,as,VariableDefinition),from,String),
-  ImportDeclaration(import,String))
+  Cell(ImportDeclaration(import,VariableDefinition,from,String))
+
+# Import star
+
+import * as name from "module-name";
+
+==>
+
+  Cell(ImportDeclaration(import,Star,as,VariableDefinition,from,String))
+
+# Import one
+
+import { member } from "module-name";
+
+==>
+
+  Cell(ImportDeclaration(import,ImportGroup(VariableDefinition),from,String))
+
+# Import many
+
+import { member1, member2 as alias2 } from "module-name";
+
+==>
+
+  Cell(ImportDeclaration(import,ImportGroup(VariableDefinition,VariableName,as,VariableDefinition),from,String))
+
+# Import default and many
+
+import defaultMember, { member1, member2 as alias2, } from "module-name";
+
+==>
+
+  Cell(ImportDeclaration(import,VariableDefinition,ImportGroup(VariableDefinition,VariableName,as,VariableDefinition),from,String))
 
 # Empty statements
 
-if (true) { ; };;;
+{
+  if (true) { ; };;;
+}
 
 ==>
 
-Script(IfStatement(if,ParenthesizedExpression(BooleanLiteral),Block))
+Cell(Block(IfStatement(if,ParenthesizedExpression(BooleanLiteral),Block)))
 
 # Comments
 
-/* a */
-one;
+{
+  /* a */
+  one;
 
-/* b **/
-two;
+  /* b **/
+  two;
 
-/* c ***/
-three;
+  /* c ***/
+  three;
 
-/* d
+  /* d
 
-***/
-four;
+  ***/
+  four;
 
-y // comment
-  * z;
+  y // comment
+    * z;
+}
 
 ==>
 
-Script(
+Cell(Block(
   BlockComment,
   ExpressionStatement(VariableName),
   BlockComment,
@@ -246,29 +293,33 @@ Script(
   ExpressionStatement(VariableName),
   BlockComment,
   ExpressionStatement(VariableName),
-  ExpressionStatement(BinaryExpression(VariableName,LineComment,ArithOp,VariableName)))
+  ExpressionStatement(BinaryExpression(VariableName,LineComment,ArithOp,VariableName))))
 
 # Recover from invalid char
 
-const {foo#bar} = {};
+{
+  const {foo#bar} = {};
+}
 
 ==>
 
-Script(VariableDeclaration(
+Cell(Block(VariableDeclaration(
   const,
   ObjectPattern("{",PatternProperty(PropertyName,⚠,VariableDefinition),"}"),
   Equals,
-  ObjectExpression))
+  ObjectExpression)))
 
 # Sync back to statement
 
-function f() {
-  log(a b --c)
+{
+  function f() {
+    log(a b --c)
+  }
+  function g() {}
 }
-function g() {}
 
 ==>
 
-Script(
+Cell(Block(
   FunctionDeclaration(function,VariableDefinition,ParamList,Block(ExpressionStatement(CallExpression(VariableName,ArgList(...))))),
-  FunctionDeclaration(function,VariableDefinition,ParamList,Block))
+  FunctionDeclaration(function,VariableDefinition,ParamList,Block)))
