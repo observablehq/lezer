@@ -22,13 +22,18 @@
   ternary @right,
   assign @right,
   comma @left,
+  cellname @cut,
   statement @cut
 }
 
 @top Cell {
   ImportDeclaration |
   Block |
-  ExpressionStatement
+  ExpressionStatement |
+  NamedBlockCell { VariableName !cellname "=" Block semi } |
+  NamedExpressionCell { VariableName !cellname "=" expressionNoComma semi } |
+  NamedClassCell { kw<"class"> VariableName !cellname (kw<"extends"> expression)? ClassBody } |
+  NamedFunctionCell { async? kw<"function"> Star? VariableName !cellname ParamList Block }
 }
 
 statement[@isGroup=Statement] {

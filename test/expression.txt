@@ -6,6 +6,38 @@
 
 Cell(ExpressionStatement(Number))
 
+# Anonymous function declaration
+
+function() {}
+
+==>
+
+Cell(ExpressionStatement(FunctionExpression(function,ParamList,Block)))
+
+# Anonymous class declaration
+
+class {}
+
+==>
+
+Cell(ExpressionStatement(ClassExpression(class,ClassBody)))
+
+# Yield expression
+
+yield 0
+
+==>
+
+Cell(ExpressionStatement(UnaryExpression(yield,Number)))
+
+# Await expression
+
+await 0
+
+==>
+
+Cell(ExpressionStatement(UnaryExpression(await,Number)))
+
 # Strings
 
 {
@@ -231,7 +263,7 @@ a = void b();
 
 ==>
 
-Cell(ExpressionStatement(AssignmentExpression(VariableName,Equals,UnaryExpression(void,CallExpression(VariableName,ArgList)))))
+Cell(NamedExpressionCell(VariableName,Equals,UnaryExpression(void,CallExpression(VariableName,ArgList))))
 
 # Augmented assignment
 
