@@ -208,27 +208,6 @@ Script(
   ImportDeclaration(import,VariableDefinition,ImportGroup(VariableDefinition,VariableName,as,VariableDefinition),from,String),
   ImportDeclaration(import,String))
 
-# Exports
-
-export { name1, name2, name3 as x, nameN };
-export let a, b = 2;
-export default 2 + 2;
-export default function() { }
-export default async function name1() { }
-export { name1 as default, } from "foo";
-export * from 'foo';
-
-==>
-
-Script(
-  ExportDeclaration(export,ExportGroup(VariableName,VariableName,VariableName,as,VariableName,VariableName)),
-  ExportDeclaration(export,VariableDeclaration(let,VariableDefinition,VariableDefinition,Equals,Number)),
-  ExportDeclaration(export,default,BinaryExpression(Number,ArithOp,Number)),
-  ExportDeclaration(export,default,FunctionDeclaration(function,ParamList,Block)),
-  ExportDeclaration(export,default,FunctionDeclaration(async,function,VariableDefinition,ParamList,Block)),
-  ExportDeclaration(export,ExportGroup(VariableName,as,VariableName),from,String),
-  ExportDeclaration(export,Star,from,String))
-
 # Empty statements
 
 if (true) { ; };;;
