@@ -30,8 +30,8 @@
   ImportDeclaration |
   Block |
   ExpressionStatement |
-  NamedBlockCell { VariableName !cellname "=" Block semi } |
-  NamedExpressionCell { VariableName !cellname "=" expressionNoComma semi } |
+  NamedBlockCell { VariableName !cellname "=" Block } |
+  NamedExpressionCell { VariableName !cellname "=" expression semi } |
   NamedClassCell { kw<"class"> VariableName !cellname (kw<"extends"> expression)? ClassBody } |
   NamedFunctionCell { async? kw<"function"> Star? VariableName !cellname ParamList Block }
 }

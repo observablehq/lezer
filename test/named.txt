@@ -38,6 +38,14 @@ foo = ({})
 
 Cell(NamedExpressionCell(VariableName,Equals,ParenthesizedExpression(ObjectExpression)))
 
+# Comma expression
+
+foo = 1, 2, 3
+
+==>
+
+Cell(NamedExpressionCell(VariableName,Equals,SequenceExpression(Number,Number,Number)))
+
 # Named class declaration
 
 class Foo {}
