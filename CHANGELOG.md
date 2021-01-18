@@ -1,3 +1,45 @@
+## 0.13.0 (2020-12-04)
+
+## 0.12.0 (2020-10-23)
+
+### Breaking changes
+
+Adjust to changed serialized parser format.
+
+## 0.11.1 (2020-09-26)
+
+### Bug fixes
+
+Fix lezer depencency versions
+
+## 0.11.0 (2020-09-26)
+
+### Breaking changes
+
+Follow change in serialized parser format.
+
+## 0.10.1 (2020-09-02)
+
+### Bug fixes
+
+Fix associativity of `else` and ternary operators.
+
+Work around accidental ambiguity of TypeScript method and constructor signatures.
+
+Properly parse `??=` as an update operator.
+
+## 0.10.0 (2020-08-07)
+
+### Breaking changes
+
+Upgrade to 0.10 parser serialization
+
+### New features
+
+The gammar now supports TypeScript (use the `"ts"` dialect).
+
+The grammar can now parse JSX syntax (use the `"jsx"` dialect).
+
 ## 0.9.1 (2020-06-29)
 
 ### Bug fixes
