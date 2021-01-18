@@ -263,7 +263,7 @@ a = void b();
 
 ==>
 
-Cell(NamedExpressionCell(VariableName,Equals,UnaryExpression(void,CallExpression(VariableName,ArgList))))
+Cell(NamedExpressionCell(VariableDefinition,Equals,UnaryExpression(void,CallExpression(VariableName,ArgList))))
 
 # Augmented assignment
 

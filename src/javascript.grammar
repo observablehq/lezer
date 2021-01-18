@@ -30,10 +30,10 @@
   ImportDeclaration |
   Block |
   ExpressionStatement |
-  NamedBlockCell { VariableName !cellname "=" Block } |
-  NamedExpressionCell { VariableName !cellname "=" expression semi } |
-  NamedClassCell { kw<"class"> VariableName !cellname (kw<"extends"> expression)? ClassBody } |
-  NamedFunctionCell { async? kw<"function"> Star? VariableName !cellname ParamList Block }
+  NamedBlockCell[@dynamicPrecedence=1] { (VariableDefinition | QualifiedVariableDefinition) !cellname "=" Block } |
+  NamedExpressionCell[@dynamicPrecedence=1] { (VariableDefinition | QualifiedVariableDefinition) !cellname "=" expression semi } |
+  NamedClassCell { kw<"class"> VariableDefinition !cellname (kw<"extends"> expression)? ClassBody } |
+  NamedFunctionCell { async? kw<"function"> Star? VariableDefinition !cellname ParamList Block }
 }
 
 statement[@isGroup=Statement] {
@@ -65,7 +65,7 @@ ImportDeclaration {
 }
 
 ImportGroup {
-  "{" commaSep<VariableDefinition | VariableName ckw<"as"> VariableDefinition> "}"
+  "{" commaSep<VariableDefinition | (VariableName | QualifiedVariableName) ckw<"as"> VariableDefinition> "}"
 }
 
 ForSpec {
@@ -150,6 +150,7 @@ expressionNoComma {
   String |
   TemplateString |
   VariableName |
+  QualifiedVariableName |
   boolean |
   kw<"this"> |
   kw<"null"> |
@@ -222,9 +223,9 @@ BinaryExpression {
 }
 
 AssignmentExpression {
-  (VariableName | MemberExpression) !assign UpdateOp<($[+\-/%^] | "*" "*"? | "|" "|"? | "&" "&"? | "<<" | ">>" ">"? | "??") "=">
+  (VariableName | QualifiedVariableName | MemberExpression) !assign UpdateOp<($[+\-/%^] | "*" "*"? | "|" "|"? | "&" "&"? | "<<" | ">>" ">"? | "??") "=">
     expressionNoComma |
-  (VariableName | MemberExpression | ArrayPattern | ObjectPattern) !assign "=" expressionNoComma
+  (VariableName | QualifiedVariableName | MemberExpression | ArrayPattern | ObjectPattern) !assign "=" expressionNoComma
 }
 
 MemberExpression {
@@ -278,6 +279,12 @@ Star { "*" }
 VariableName { identifier ~arrow }
 
 VariableDefinition { identifier ~arrow }
+
+qualifier { kw<"viewof"> | kw<"mutable"> }
+
+QualifiedVariableDefinition { qualifier VariableDefinition }
+
+QualifiedVariableName { qualifier VariableName }
 
 Label { identifier }
 

@@ -1,0 +1,15 @@
+# Mutable definition
+
+mutable foo = null
+
+==>
+
+Cell(NamedExpressionCell(QualifiedVariableDefinition(mutable,VariableDefinition),Equals,null))
+
+# Mutable expression
+
+mutable foo
+
+==>
+
+Cell(ExpressionStatement(QualifiedVariableName(mutable,VariableName)))

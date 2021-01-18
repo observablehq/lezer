@@ -1,0 +1,15 @@
+# View definition
+
+viewof foo = null
+
+==>
+
+Cell(NamedExpressionCell(QualifiedVariableDefinition(viewof,VariableDefinition),Equals,null))
+
+# View expression
+
+viewof foo.value
+
+==>
+
+Cell(ExpressionStatement(MemberExpression(QualifiedVariableName(viewof,VariableName),PropertyName)))

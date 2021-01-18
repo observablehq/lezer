@@ -4,7 +4,7 @@ foo = 0
 
 ==>
 
-Cell(NamedExpressionCell(VariableName,Equals,Number))
+Cell(NamedExpressionCell(VariableDefinition,Equals,Number))
 
 # Block with return
 
@@ -12,7 +12,7 @@ foo = { return 0; }
 
 ==>
 
-Cell(NamedBlockCell(VariableName,Equals,Block(ReturnStatement(return,Number))))
+Cell(NamedBlockCell(VariableDefinition,Equals,Block(ReturnStatement(return,Number))))
 
 # Block with await return
 
@@ -20,7 +20,7 @@ foo = { return await 0; }
 
 ==>
 
-Cell(NamedBlockCell(VariableName,Equals,Block(ReturnStatement(return,UnaryExpression(await,Number)))))
+Cell(NamedBlockCell(VariableDefinition,Equals,Block(ReturnStatement(return,UnaryExpression(await,Number)))))
 
 # Block with yield
 
@@ -28,7 +28,7 @@ foo = { yield 0; }
 
 ==>
 
-Cell(NamedBlockCell(VariableName,Equals,Block(ExpressionStatement(UnaryExpression(yield,Number)))))
+Cell(NamedBlockCell(VariableDefinition,Equals,Block(ExpressionStatement(UnaryExpression(yield,Number)))))
 
 # Object expression
 
@@ -36,7 +36,7 @@ foo = ({})
 
 ==>
 
-Cell(NamedExpressionCell(VariableName,Equals,ParenthesizedExpression(ObjectExpression)))
+Cell(NamedExpressionCell(VariableDefinition,Equals,ParenthesizedExpression(ObjectExpression)))
 
 # Comma expression
 
@@ -44,7 +44,7 @@ foo = 1, 2, 3
 
 ==>
 
-Cell(NamedExpressionCell(VariableName,Equals,SequenceExpression(Number,Number,Number)))
+Cell(NamedExpressionCell(VariableDefinition,Equals,SequenceExpression(Number,Number,Number)))
 
 # Named class declaration
 
@@ -52,7 +52,7 @@ class Foo {}
 
 ==>
 
-Cell(NamedClassCell(class,VariableName,ClassBody))
+Cell(NamedClassCell(class,VariableDefinition,ClassBody))
 
 # Named class expression
 
@@ -60,7 +60,7 @@ Foo = class {}
 
 ==>
 
-Cell(NamedExpressionCell(VariableName,Equals,ClassExpression(class,ClassBody)))
+Cell(NamedExpressionCell(VariableDefinition,Equals,ClassExpression(class,ClassBody)))
 
 # Named function declaration
 
@@ -68,7 +68,7 @@ function foo() {}
 
 ==>
 
-Cell(NamedFunctionCell(function,VariableName,ParamList,Block))
+Cell(NamedFunctionCell(function,VariableDefinition,ParamList,Block))
 
 # Named function expression
 
@@ -76,7 +76,7 @@ foo = function() {}
 
 ==>
 
-Cell(NamedExpressionCell(VariableName,Equals,FunctionExpression(function,ParamList,Block)))
+Cell(NamedExpressionCell(VariableDefinition,Equals,FunctionExpression(function,ParamList,Block)))
 
 # Named generator function expression
 
@@ -84,7 +84,7 @@ foo = function*() {}
 
 ==>
 
-Cell(NamedExpressionCell(VariableName,Equals,FunctionExpression(function,Star,ParamList,Block)))
+Cell(NamedExpressionCell(VariableDefinition,Equals,FunctionExpression(function,Star,ParamList,Block)))
 
 # Named async function expression
 
@@ -92,7 +92,7 @@ foo = async function() {}
 
 ==>
 
-Cell(NamedExpressionCell(VariableName,Equals,FunctionExpression(async,function,ParamList,Block)))
+Cell(NamedExpressionCell(VariableDefinition,Equals,FunctionExpression(async,function,ParamList,Block)))
 
 # Named arrow function expression
 
@@ -100,4 +100,4 @@ foo = () => {}
 
 ==>
 
-Cell(NamedExpressionCell(VariableName,Equals,ArrowFunction(ParamList,Arrow,Block)))
+Cell(NamedExpressionCell(VariableDefinition,Equals,ArrowFunction(ParamList,Arrow,Block)))
