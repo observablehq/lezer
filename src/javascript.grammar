@@ -61,7 +61,7 @@ ExpressionStatement {
 }
 
 ImportDeclaration {
-  kw<"import"> (Star ckw<"as"> VariableDefinition | commaSep<VariableDefinition | ImportGroup>) ckw<"from"> String semi
+  kw<"import"> ImportGroup (kw<"with"> ImportGroup)? ckw<"from"> String semi
 }
 
 ImportGroup {

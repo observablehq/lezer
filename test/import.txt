@@ -1,0 +1,23 @@
+# Import one
+
+import {member} from "module-name";
+
+==>
+
+  Cell(ImportDeclaration(import,ImportGroup(VariableDefinition),from,String))
+
+# Import many
+
+import {member1, member2 as alias2} from "module-name";
+
+==>
+
+  Cell(ImportDeclaration(import,ImportGroup(VariableDefinition,VariableName,as,VariableDefinition),from,String))
+
+# Import with
+
+import {chart} with {data} from "module-name";
+
+==>
+
+  Cell(ImportDeclaration(import,ImportGroup(VariableDefinition),with,ImportGroup(VariableDefinition),from,String))

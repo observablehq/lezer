@@ -211,46 +211,6 @@ Cell(Block(
     MethodDeclaration(PropertyNameDefinition,ParamList,Block(ExpressionStatement(CallExpression(super,ArgList)))),
     MethodDeclaration(PropertyNameDefinition,ParamList,Block(ExpressionStatement(CallExpression(MemberExpression(super,PropertyName),ArgList))))))))
 
-# Import default
-
-import defaultMember from "module-name";
-
-==>
-
-  Cell(ImportDeclaration(import,VariableDefinition,from,String))
-
-# Import star
-
-import * as name from "module-name";
-
-==>
-
-  Cell(ImportDeclaration(import,Star,as,VariableDefinition,from,String))
-
-# Import one
-
-import { member } from "module-name";
-
-==>
-
-  Cell(ImportDeclaration(import,ImportGroup(VariableDefinition),from,String))
-
-# Import many
-
-import { member1, member2 as alias2 } from "module-name";
-
-==>
-
-  Cell(ImportDeclaration(import,ImportGroup(VariableDefinition,VariableName,as,VariableDefinition),from,String))
-
-# Import default and many
-
-import defaultMember, { member1, member2 as alias2, } from "module-name";
-
-==>
-
-  Cell(ImportDeclaration(import,VariableDefinition,ImportGroup(VariableDefinition,VariableName,as,VariableDefinition),from,String))
-
 # Empty statements
 
 {
