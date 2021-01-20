@@ -20,9 +20,9 @@
   and @left,
   or @left,
   ternary @right,
+  cellname @cut,
   assign @right,
   comma @left,
-  cellname @cut,
   statement @cut
 }
 
@@ -32,8 +32,8 @@
   ExpressionStatement |
   NamedBlockCell[@dynamicPrecedence=1] { (VariableDefinition | QualifiedVariableDefinition) !cellname "=" Block } |
   NamedExpressionCell[@dynamicPrecedence=1] { (VariableDefinition | QualifiedVariableDefinition) !cellname "=" expression semi } |
-  NamedClassCell { kw<"class"> VariableDefinition !cellname (kw<"extends"> expression)? ClassBody } |
-  NamedFunctionCell { async? kw<"function"> Star? VariableDefinition !cellname ParamList Block }
+  NamedClassCell { kw<"class"> !cellname VariableDefinition (kw<"extends"> expression)? ClassBody } |
+  NamedFunctionCell { async? kw<"function"> Star? !cellname VariableDefinition ParamList Block }
 }
 
 statement[@isGroup=Statement] {
