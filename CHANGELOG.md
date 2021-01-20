@@ -1,3 +1,15 @@
+## 0.13.2 (2021-01-18)
+
+### Bug fixes
+
+Fix parsing of async function expressions.
+
+## 0.13.1 (2020-12-04)
+
+### Bug fixes
+
+Fix versions of lezer packages depended on.
+
 ## 0.13.0 (2020-12-04)
 
 ## 0.12.0 (2020-10-23)
