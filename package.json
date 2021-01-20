@@ -1,6 +1,6 @@
 {
   "name": "@observablehq/lezer",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A Lezer grammar for Observable JavaScript",
   "main": "dist/index.cjs",
   "type": "module",
