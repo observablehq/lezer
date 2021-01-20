@@ -29,9 +29,9 @@
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
 "@types/node@*":
-  version "14.14.21"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.21.tgz#d934aacc22424fe9622ebf6857370c052eae464e"
-  integrity sha512-cHYfKsnwllYhjOzuC5q1VpguABBeecUp24yFluHpn/BQaVxB1CuQ1FSRZCzrPxrkIfWISXV2LbeoBthLWg0+0A==
+  version "14.14.22"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.22.tgz#0d29f382472c4ccf3bd96ff0ce47daf5b7b84b18"
+  integrity sha512-g+f/qj/cNcqKkc3tFqlXOYjrmZA+jNBiDzbP3kH+B+otKFqAdPgVTGP1IeKRdMml/aE69as5S4FqtxAbl+LaMw==
 
 "@types/resolve@1.17.1":
   version "1.17.1"
@@ -402,24 +402,24 @@ js-yaml@3.14.0:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-lezer-generator@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/lezer-generator/-/lezer-generator-0.12.0.tgz#462988abfc64fc988fa905a150504bead7546e4d"
-  integrity sha512-UjiTJld02DGczOTUHCDqgBkiKVkrjL2tkba3PEE7AAc++sJgzdm9UZ/+52VmsRbuwCMrfZ1fJC1tKVe3xqPRSw==
+lezer-generator@^0.13.0:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/lezer-generator/-/lezer-generator-0.13.1.tgz#99bd9f84658340c3241b5274c263bc17ba630578"
+  integrity sha512-nc6llt59M/2N1cwieqN5UUBwmQ34oi5VxvsYxi0GzP7p+g9ZEhBbXFNjkDSyzz57dks+IgAC2yc5YRCmDMu7nQ==
   dependencies:
-    lezer "^0.12.0"
+    lezer "^0.13.0"
 
-lezer-tree@^0.12.0:
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/lezer-tree/-/lezer-tree-0.12.3.tgz#41abec350449712927657fbd6b506c34b48df594"
-  integrity sha512-3WPuomiOpnivc+DrXdZj1C+gImdSgCYeiwkqFgbWenRv1/zgP3QO5Eij5rDwS7R2rDI7hozVNrg/Yy4tkOhF9A==
+lezer-tree@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/lezer-tree/-/lezer-tree-0.13.0.tgz#199757338a30e4c5ee8d9a767546d7ce8935bfbe"
+  integrity sha512-YqGD22WxQmT6np2JEX5Z+zhdBSfPEcQ8B6ct+39oLzSAHecUPUd/maN5PKNtnUZbSzd81mEx1ZqzMDA1eRSRcg==
 
-lezer@^0.12.0:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/lezer/-/lezer-0.12.1.tgz#0bfab0f07b568bfb7701dfd97a81aac34daf7edf"
-  integrity sha512-CK/kfRFzRGAh5nZ8hOTi6/6o3XnL7TWoJBLHg/xOYBpzFs7E50qUEYNehMYHZSyGugpeq8d121lkmRgn7t397g==
+lezer@^0.13.0:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/lezer/-/lezer-0.13.1.tgz#95c8a4e9ad96bae567dff477bdf93b5f1d66f87d"
+  integrity sha512-aDX9OHYWQFt3s7C0IEil//Lckxbr02dCRyxB/uTxVuZjBsNHnUJ8Y83OgDi+uNFwRsexhdoMF0/PSvmky/Fg/g==
   dependencies:
-    lezer-tree "^0.12.0"
+    lezer-tree "^0.13.0"
 
 locate-path@^3.0.0:
   version "3.0.0"
@@ -594,9 +594,9 @@ resolve@^1.17.0:
     path-parse "^1.0.6"
 
 rollup@^2.27.1:
-  version "2.36.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.36.2.tgz#883fc793c70c8481ad604f1065cd79ab0a4e9c49"
-  integrity sha512-qjjiuJKb+/8n0EZyQYVW+gFU4bNRBcZaXVzUgSVrGw0HlQBlK2aWyaOMMs1Ufic1jV69b9kW3u3i9B+hISDm3A==
+  version "2.37.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.37.0.tgz#5baf631dc224a56d7eb88dd11b20aa28c1e8dc6f"
+  integrity sha512-cbxuxkMGCQV+TnVh+yZSUerbVb5i8soRydbzHYoMNojgt7MMi+jDLLs24U9HHCssKkwkXmsj+LXcOZMldTbz2w==
   optionalDependencies:
     fsevents "~2.1.2"
 
