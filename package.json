@@ -1,6 +1,6 @@
 {
   "name": "@observablehq/lezer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Lezer grammar for Observable JavaScript",
   "main": "dist/index.cjs",
   "type": "module",
@@ -19,7 +19,7 @@
     "@rollup/plugin-node-resolve": "^9.0.0"
   },
   "dependencies": {
-    "lezer": "^0.13.0"
+    "lezer": "^0.13.4"
   },
   "repository": {
     "type": "git",
