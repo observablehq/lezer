@@ -237,7 +237,7 @@ ArgList {
 }
 
 ArrowFunction {
-  async? (ParamList { VariableDefinition } | ParamList) "=>" (Block | expression)
+  async? (ParamList { VariableDefinition } | ParamList) "=>" (Block | expressionNoComma)
 }
 
 @skip {} {
